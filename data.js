@@ -1,3 +1,15 @@
+// FUNCTIONS
+//funzione ch e genera una stringa esadecimale da utilizzare come colore
+const randomHexColorGenerator = function () {
+  const char = '0123456789abcdef';
+  const color = [];
+  while (color.length < 6) {
+    color.push(char[Math.ceil(Math.random() * char.length) - 1]);
+  }
+  return `#${color.join('')}`;
+};
+
+// DATA
 const faIcons = [
   {
     name: 'cat',
@@ -122,6 +134,8 @@ faIcons.forEach((e) => {
   const className = `fa-solid ${e.prefix}${e.name}`;
   boxHtml.querySelector('.box i').className = className;
   //2.Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente.
+  //bonus 1 ,random color generator sulla proprieta color degli elementi
+  e.color = randomHexColorGenerator();
   boxHtml.querySelector('.box i').style.color = e.color;
   boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
   container.append(boxHtml);
@@ -135,13 +149,7 @@ filterSelect.addEventListener('change', function () {
   } else {
     filteredArray = faIcons.filter((e) => e.type === this.value);
   }
-  // 1.Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa.
-  //hook al container
-  const container = document.querySelector('#container');
-  //refresh container al change
   container.innerHTML = '';
-  // clono il template
-  const tplBoxHtml = document.querySelector('.tpl-box').content;
   //popolo il container
   filteredArray.forEach((e) => {
     const boxHtml = tplBoxHtml.cloneNode(true);
