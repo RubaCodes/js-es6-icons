@@ -8,7 +8,7 @@ const randomHexColorGenerator = function () {
   }
   return `#${color.join('')}`;
 };
-//funzione che popola il container
+//funzione che popola il container , un po no schifo perche non generica
 const printBoxes = function (array) {
   array.forEach((e) => {
     const boxHtml = tplBoxHtml.cloneNode(true);
@@ -139,7 +139,6 @@ const faIcons = [
 ];
 
 //bonus 2. determinare dinamicamente le varie categorie
-
 //fetch delle categorie
 const allTypes = ['all'];
 faIcons.forEach((e) => {
@@ -154,9 +153,10 @@ for (let i = 0; i < allTypes.length; i++) {
      ${allTypes[i].toUpperCase()} 
     </option>`;
 }
-//primo print di default al caricamento della pagina
+
 const container = document.querySelector('#container');
 const tplBoxHtml = document.querySelector('.tpl-box').content;
+//primo print di default al caricamento della pagina su categoria all
 printBoxes(faIcons);
 //3.Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
 let filteredArray = [];

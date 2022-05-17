@@ -22,7 +22,12 @@
 #container {
   height: calc(100vh - 139px);
   padding: 50px;
-  background-color: lightgrey;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(255, 0, 0, 1) 100%
+  );
   display: flex;
   flex-flow: row wrap;
   gap: 20px;
