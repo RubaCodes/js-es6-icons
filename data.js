@@ -119,13 +119,12 @@ const container = document.querySelector('#container');
 //
 // clono il template
 const tplBoxHtml = document.querySelector('.tpl-box').content;
-console.log(container, tplBoxHtml);
 
 faIcons.forEach((e) => {
   const boxHtml = tplBoxHtml.cloneNode(true);
   //costruire il nome della classe
   const className = `fa-solid ${e.prefix}${e.name}`;
   boxHtml.querySelector('.box i').className = className;
-  boxHtml.querySelector('.box span').textContent = e.name;
+  boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
   container.append(boxHtml);
 });
