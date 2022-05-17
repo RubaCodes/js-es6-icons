@@ -8,7 +8,20 @@ const randomHexColorGenerator = function () {
   }
   return `#${color.join('')}`;
 };
-
+//funzione che popola il container
+const printBoxes = function (array) {
+  array.forEach((e) => {
+    const boxHtml = tplBoxHtml.cloneNode(true);
+    //costruire il nome della classe
+    const className = `fa-solid ${e.prefix}${e.name}`;
+    boxHtml.querySelector('.box i').className = className;
+    //2.Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente.
+    e.color = randomHexColorGenerator();
+    boxHtml.querySelector('.box i').style.color = e.color;
+    boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
+    container.append(boxHtml);
+  });
+};
 // DATA
 const faIcons = [
   {
@@ -144,20 +157,8 @@ for (let i = 0; i < allTypes.length; i++) {
 //primo print di default al caricamento della pagina
 const container = document.querySelector('#container');
 const tplBoxHtml = document.querySelector('.tpl-box').content;
-faIcons.forEach((e) => {
-  const boxHtml = tplBoxHtml.cloneNode(true);
-  //costruire il nome della classe
-  const className = `fa-solid ${e.prefix}${e.name}`;
-  boxHtml.querySelector('.box i').className = className;
-  //2.Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente.
-  //bonus 1 ,random color generator sulla proprieta color degli elementi
-  e.color = randomHexColorGenerator();
-  boxHtml.querySelector('.box i').style.color = e.color;
-  boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
-  container.append(boxHtml);
-});
+printBoxes(faIcons);
 //3.Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
-
 let filteredArray = [];
 filterSelect.addEventListener('change', function () {
   if (this.value === 'all') {
@@ -168,14 +169,5 @@ filterSelect.addEventListener('change', function () {
   //pulizia dell'inner html al change
   container.innerHTML = '';
   //popolo il container
-  filteredArray.forEach((e) => {
-    const boxHtml = tplBoxHtml.cloneNode(true);
-    //costruire il nome della classe
-    const className = `fa-solid ${e.prefix}${e.name}`;
-    boxHtml.querySelector('.box i').className = className;
-    //2.Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente.
-    boxHtml.querySelector('.box i').style.color = e.color;
-    boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
-    container.append(boxHtml);
-  });
+  printBoxes(filteredArray);
 });
