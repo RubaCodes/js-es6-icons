@@ -18,3 +18,17 @@
   text-transform: uppercase;
   gap: 20px;
 }
+/* MAIN */
+.container {
+  background-color: lightgrey;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+}
+.box {
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
