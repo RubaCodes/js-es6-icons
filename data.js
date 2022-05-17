@@ -138,7 +138,7 @@ for (let i = 0; i < allTypes.length; i++) {
   filterSelect.innerHTML += `<option class="${i + 1}-option" value="${
     allTypes[i]
   }">
-     ${allTypes[i]} 
+     ${allTypes[i].toUpperCase()} 
     </option>`;
 }
 //primo print di default al caricamento della pagina
