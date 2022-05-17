@@ -125,6 +125,22 @@ const faIcons = [
   },
 ];
 
+//bonus 2. determinare dinamicamente le varie categorie
+
+//fetch delle categorie
+const allTypes = ['all'];
+faIcons.forEach((e) => {
+  if (!allTypes.includes(e.type)) allTypes.push(e.type);
+});
+//aggiungo le categorie con template literal
+const filterSelect = document.querySelector('#type-filter');
+for (let i = 0; i < allTypes.length; i++) {
+  filterSelect.innerHTML += `<option class="${i + 1}-option" value="${
+    allTypes[i]
+  }">
+     ${allTypes[i]} 
+    </option>`;
+}
 //primo print di default al caricamento della pagina
 const container = document.querySelector('#container');
 const tplBoxHtml = document.querySelector('.tpl-box').content;
@@ -141,14 +157,15 @@ faIcons.forEach((e) => {
   container.append(boxHtml);
 });
 //3.Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
-const filterSelect = document.querySelector('#type-filter');
+
 let filteredArray = [];
 filterSelect.addEventListener('change', function () {
-  if (this.value === 'default') {
+  if (this.value === 'all') {
     filteredArray = faIcons;
   } else {
     filteredArray = faIcons.filter((e) => e.type === this.value);
   }
+  //pulizia dell'inner html al change
   container.innerHTML = '';
   //popolo il container
   filteredArray.forEach((e) => {
