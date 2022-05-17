@@ -125,6 +125,7 @@ faIcons.forEach((e) => {
   //costruire il nome della classe
   const className = `fa-solid ${e.prefix}${e.name}`;
   boxHtml.querySelector('.box i').className = className;
+  boxHtml.querySelector('.box i').style.color = e.color;
   boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
   container.append(boxHtml);
 });
