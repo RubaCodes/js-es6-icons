@@ -113,6 +113,19 @@ const faIcons = [
   },
 ];
 
+//primo print di default al caricamento della pagina
+const container = document.querySelector('#container');
+const tplBoxHtml = document.querySelector('.tpl-box').content;
+faIcons.forEach((e) => {
+  const boxHtml = tplBoxHtml.cloneNode(true);
+  //costruire il nome della classe
+  const className = `fa-solid ${e.prefix}${e.name}`;
+  boxHtml.querySelector('.box i').className = className;
+  //2.Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente.
+  boxHtml.querySelector('.box i').style.color = e.color;
+  boxHtml.querySelector('.box span').textContent = e.name; //appendi nodo
+  container.append(boxHtml);
+});
 //3.Aggiungere alla pagina una select in cui le options corrispondono ai vari tipi di icone (animal, vegetable, user). Quando l'utente seleziona un tipo dalla select, visualizzare solamente le icone corrispondenti.
 const filterSelect = document.querySelector('#type-filter');
 let filteredArray = [];
